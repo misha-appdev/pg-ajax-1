@@ -37,6 +37,11 @@ class CommentsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
+
+      format.js do
+        render template: "comments/create.js.erb"
+      end
+      
     end
   end
 
@@ -59,6 +64,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_back fallback_location: root_url, notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
+      format.js do
+        render template: "comments/destroy.js.erb"
+      end
+
     end
   end
 
